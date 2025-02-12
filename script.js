@@ -16,7 +16,6 @@ const playlist = document.getElementById("playlist");
 const seekBar = document.getElementById("seek-bar");
 
 let currentSongIndex = 0;
-let isPlaying = false;
 
 // Load songs into the playlist
 function loadPlaylist() {
@@ -43,12 +42,12 @@ seekBar.addEventListener("input", () => {
 function playSong(index) {
   currentSongIndex = index;
   audio.src = songs[index].url;
+  audio.load(); // Ensure the new song is loaded
   audio.play().then(() => {
-    isPlaying = true;
     playBtn.innerHTML = "<i class='fa-solid fa-pause'></i>";
     highlightSong(index);
   }).catch(error => {
-    console.error("Error playing the song:", error);
+    console.error("Autoplay failed:", error);
   });
 }
 
@@ -65,14 +64,12 @@ function highlightSong(index) {
 playBtn.addEventListener("click", () => {
   if (audio.paused) {
     audio.play().then(() => {
-      isPlaying = true;
       playBtn.innerHTML = "<i class='fa-solid fa-pause'></i>";
     }).catch(error => {
-      console.error("Error playing the song:", error);
+      console.error("Play failed:", error);
     });
   } else {
     audio.pause();
-    isPlaying = false;
     playBtn.innerHTML = "<i class='fa-solid fa-play'></i>";
   }
 });
@@ -91,10 +88,10 @@ prevBtn.addEventListener("click", () => {
 
 // Automatically play the next song when the current one ends
 audio.addEventListener("ended", () => {
-  if (isPlaying) {
+  setTimeout(() => {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     playSong(currentSongIndex);
-  }
+  }, 500); // Add a small delay
 });
 
 // Search for a song by name or movie
@@ -114,3 +111,4 @@ searchInput.addEventListener("input", () => {
 
 // Load the playlist when the page loads
 loadPlaylist();
+playSong(currentSongIndex);
