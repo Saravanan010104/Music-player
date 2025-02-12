@@ -34,6 +34,7 @@ body {
   overflow-y: auto; /* Enable vertical scrolling */
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  margin-bottom:10px;
 }
 
 #playlist::-webkit-scrollbar {
