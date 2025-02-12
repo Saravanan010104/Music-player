@@ -78,7 +78,11 @@ prevBtn.addEventListener("click", () => {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   playSong(currentSongIndex);
 });
-
+// Automatically play the next song when the current one ends
+audio.addEventListener("ended", () => {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  playSong(currentSongIndex);
+});
 // Search for a song by name or movie
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase();
