@@ -17,12 +17,15 @@
       <!-- Songs will be dynamically added here -->
       </ul>
     </div>
-    <input type="range" id="seek-bar" value="0" min="0" step="1">
+    <span id="current-time" style="font-size: 0.8em;">0:00</span>
+    <input type="range" class="seek1" id="seek-bar" value="0" min="0" step="1" style="width: 70%; height: 10px;">
+    <span id="duration" style="font-size: 0.8em;">0:00</span>
     <div class="controls">
       <button id="prev"><i class="fas fa-backward"></i></button>
       <button id="play"><i class="fa-solid fa-play"></i></button>
       <button id="next"><i class="fas fa-forward"></i></button>
     </div>
+    
     <audio id="audio" controls style="display: none;"></audio>
   </div>
   <script src="script.js"></script>
