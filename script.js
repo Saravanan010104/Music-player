@@ -16,6 +16,7 @@ const playlist = document.getElementById("playlist");
 const seekBar = document.getElementById("seek-bar");
 
 let currentSongIndex = 0;
+let isPlaying = false;
 
 // Load songs into the playlist
 function loadPlaylist() {
@@ -42,9 +43,13 @@ seekBar.addEventListener("input", () => {
 function playSong(index) {
   currentSongIndex = index;
   audio.src = songs[index].url;
-  audio.play();
-  playBtn.innerHTML = "<i class='fa-solid fa-pause'></i>";
-  highlightSong(index);
+  audio.play().then(() => {
+    isPlaying = true;
+    playBtn.innerHTML = "<i class='fa-solid fa-pause'></i>";
+    highlightSong(index);
+  }).catch(error => {
+    console.error("Error playing the song:", error);
+  });
 }
 
 // Highlight the current song in the playlist
@@ -59,10 +64,15 @@ function highlightSong(index) {
 // Play or pause the current song
 playBtn.addEventListener("click", () => {
   if (audio.paused) {
-    audio.play();
-    playBtn.innerHTML = "<i class='fa-solid fa-pause'></i>";
+    audio.play().then(() => {
+      isPlaying = true;
+      playBtn.innerHTML = "<i class='fa-solid fa-pause'></i>";
+    }).catch(error => {
+      console.error("Error playing the song:", error);
+    });
   } else {
     audio.pause();
+    isPlaying = false;
     playBtn.innerHTML = "<i class='fa-solid fa-play'></i>";
   }
 });
@@ -78,11 +88,15 @@ prevBtn.addEventListener("click", () => {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   playSong(currentSongIndex);
 });
+
 // Automatically play the next song when the current one ends
 audio.addEventListener("ended", () => {
-  currentSongIndex = (currentSongIndex + 1) % songs.length;
-  playSong(currentSongIndex);
+  if (isPlaying) {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    playSong(currentSongIndex);
+  }
 });
+
 // Search for a song by name or movie
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase();
@@ -100,4 +114,3 @@ searchInput.addEventListener("input", () => {
 
 // Load the playlist when the page loads
 loadPlaylist();
-playSong(currentSongIndex);
