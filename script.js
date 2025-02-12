@@ -1,16 +1,16 @@
 const songs = [
-  { name: "mysong", url: "song1.mp3" },
-  { name: "Song 2", url: "song2.mp3" },
-  { name: "Song 3", url: "song3.mp3" },
-  { name: "mysong", url: "song1.mp3" },
-  { name: "Song 2", url: "song2.mp3" },
-  { name: "Song 3", url: "song3.mp3" },
-  { name: "mysong", url: "song1.mp3" },
-  { name: "Song 2", url: "song2.mp3" },
-  { name: "Song 3", url: "song3.mp3" },
-  { name: "mysong", url: "song1.mp3" },
-  { name: "Song 2", url: "song2.mp3" },
-  { name: "Song 3", url: "song3.mp3" },
+  { name: "mysong", url: "music/song1.mp3" },
+  { name: "Song 2", url: "music/song2.mp3" },
+  { name: "Song 3", url: "music/song3.mp3" },
+  { name: "mysong", url: "music/song1.mp3" },
+  { name: "Song 2", url: "music/song2.mp3" },
+  { name: "Song 3", url: "music/song3.mp3" },
+  { name: "mysong", url: "music/song1.mp3" },
+  { name: "Song 2", url: "music/song2.mp3" },
+  { name: "Song 3", url: "music/song3.mp3" },
+  { name: "mysong", url: "music/song1.mp3" },
+  { name: "Song 2", url: "music/song2.mp3" },
+  { name: "Song 3", url: "music/song3.mp3" },
 ];
 
 const audio = document.getElementById("audio");
