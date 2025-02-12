@@ -1,10 +1,10 @@
 const songs = [
-  { name: "Whistle Podu", url: "Whistle Podu.mp3", movie: "GOAT" },
-  { name: "Spark", url: "Spark.mp3", movie: "GOAT" },
-  { name: "Chinna Chinna Kangal", url: "Chinna Chinna Kangal.mp3", movie: "GOAT" },
-  { name: "Sawadeekar", url: "Sawadeekar.mp3", movie: "vidamuyarchi" },
-  { name: "Pathikichu", url: "Pathikichu.mp3", movie: "vidamuyarchi" },
-  { name: "Thaniye", url: "Thaniye.mp3", movie: "vidamuyarchi" },
+  { name: "Whistle Podu", url: "music/Whistle Podu.mp3", movie: "GOAT" },
+  { name: "Spark", url: "music/Spark.mp3", movie: "GOAT" },
+  { name: "Chinna Chinna Kangal", url: "music/Chinna Chinna Kangal.mp3", movie: "GOAT" },
+  { name: "Sawadeekar", url: "music/Sawadeekar.mp3", movie: "vidamuyarchi" },
+  { name: "Pathikichu", url: "music/Pathikichu.mp3", movie: "vidamuyarchi" },
+  { name: "Thaniye", url: "music/Thaniye.mp3", movie: "vidamuyarchi" },
 ];
 
 const audio = document.getElementById("audio");
