@@ -1,16 +1,10 @@
 const songs = [
-  { name: "mysong", url: "music/song1.mp3" },
-  { name: "Song 2", url: "music/song2.mp3" },
-  { name: "Song 3", url: "music/song3.mp3" },
-  { name: "mysong", url: "music/song1.mp3" },
-  { name: "Song 2", url: "music/song2.mp3" },
-  { name: "Song 3", url: "music/song3.mp3" },
-  { name: "mysong", url: "music/song1.mp3" },
-  { name: "Song 2", url: "music/song2.mp3" },
-  { name: "Song 3", url: "music/song3.mp3" },
-  { name: "mysong", url: "music/song1.mp3" },
-  { name: "Song 2", url: "music/song2.mp3" },
-  { name: "Song 3", url: "music/song3.mp3" },
+  { name: "Whistle Podu", url: "Whistle Podu.mp3", movie: "GOAT" },
+  { name: "Spark", url: "Spark.mp3", movie: "GOAT" },
+  { name: "Chinna Chinna Kangal", url: "Chinna Chinna Kangal.mp3", movie: "GOAT" },
+  { name: "Sawadeekar", url: "Sawadeekar.mp3", movie: "vidamuyarchi" },
+  { name: "Pathikichu", url: "Pathikichu.mp3", movie: "vidamuyarchi" },
+  { name: "Thaniye", url: "Thaniye.mp3", movie: "vidamuyarchi" },
 ];
 
 const audio = document.getElementById("audio");
@@ -33,15 +27,16 @@ function loadPlaylist() {
     playlist.appendChild(li);
   });
 }
+
 audio.addEventListener("timeupdate", () => {
-    seekBar.value = audio.currentTime;
-    seekBar.max = audio.duration;
-  });
-  
-  // Seek to Position when Scrubber is Clicked
-  seekBar.addEventListener("input", () => {
-    audio.currentTime = seekBar.value;
-  });
+  seekBar.value = audio.currentTime;
+  seekBar.max = audio.duration;
+});
+
+// Seek to Position when Scrubber is Clicked
+seekBar.addEventListener("input", () => {
+  audio.currentTime = seekBar.value;
+});
 
 // Play a song by index
 function playSong(index) {
@@ -84,11 +79,11 @@ prevBtn.addEventListener("click", () => {
   playSong(currentSongIndex);
 });
 
-// Search for a song by name
+// Search for a song by name or movie
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase();
   const filteredSongs = songs.filter((song) =>
-    song.name.toLowerCase().includes(query)
+    song.name.toLowerCase().includes(query) || song.movie.toLowerCase().includes(query)
   );
   playlist.innerHTML = "";
   filteredSongs.forEach((song, index) => {
