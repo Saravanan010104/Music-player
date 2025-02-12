@@ -31,7 +31,23 @@ function loadPlaylist() {
 audio.addEventListener("timeupdate", () => {
   seekBar.value = audio.currentTime;
   seekBar.max = audio.duration;
+  updateTimer();
 });
+
+// Update the timer display
+function updateTimer() {
+  const currentTime = formatTime(audio.currentTime);
+  const duration = isNaN(audio.duration) ? "0:00" : formatTime(audio.duration);
+  document.getElementById("current-time").textContent = currentTime;
+  document.getElementById("duration").textContent = duration;
+}
+
+// Format time in mm:ss
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+}
 
 // Seek to Position when Scrubber is Clicked
 seekBar.addEventListener("input", () => {
